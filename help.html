@@ -1,0 +1,177 @@
+<html>
+<head>
+<title>Dijstra's Algorithm</title>
+<style type="text/css">
+.box { position:relative; top:25px; width:675px; font-family:arial; font-size:12pt; text-align:justify; }
+.equ { font-family:times; font-style:italic; color:blue;}
+.nor { font-style:normal; }
+.tool { width:20px; height: 20px; }
+.cir { width:20px; height:20px; border:1px gray solid; border-radius:10px; font-family:arial; font-size:8pt; text-align:center; display:table-cell; vertical-align:middle;}
+.blue { color: blue; }
+td { padding:2pt; }
+p { line-height:16pt; margin-top:8pt; margin-bottom:8pt; }
+</style>
+</head>
+<body>
+<center>
+<div class="box">
+<h2 style="text-align:center;">About The Dijstra's Shortest Path Algorithm</h2>
+	<p>Dijkstra's algorithm finds the shortest path in a graph (network) made of nodes and edges.  It was 
+	published by Edsger Dijkstra ['daikstr&#601;] in 1959 and has been widely applied to transportation 
+	and GIS since then. This web-based demonstration application was developed by Dr. Ray Huang. Although 
+	named "shortest path", the algorithm can find paths that minimize any costs including distance, 
+	time, money, etc. that are involved in traversing the edges and nodes in the graph.</p>
+	
+	<p>The Dijkstra's algorithm is a labelling algorithm. Basically, it is an iterative procedure that progressively labels 
+			nodes and edges when it searches the graph and minimizes cumulative costs at nodes.  Given a
+			graph <span class="equ">G = <span class="nor">(</span>N, E<span class="nor">)</span></span>, 
+			<span class="equ">N = <span class="nor">{</span>x<span class="nor">}</span></span>, 
+			<span class="equ">E = <span class="nor">{</span>e<span class="nor">}</span></span>, 
+			where <span class="equ">N</span> and <span class="equ">E</span> represent a set of 
+			nodes and edges respectively, the procedure below finds the shortest path 
+			from an origin node <span class="equ">s <span class="nor">&#8712;</span> N</span> 
+			to a destination node <span class="equ">t <span class="nor">&#8712;</span> N</span>.</p>
+		   
+	<p style="position: relative; width:635px; left:40px; text-indent:-40px;"><b>Step 1</b>: initially, all edges and 
+			nodes are unlabeled.  Assign a number <span class="equ">d<span class="nor">(</span>x<span class="nor">)
+			</span></span> to each node <span class="equ">x</span> to denote the tentative length of the shortest 
+			path from <span class="equ">s</span> to <span class="equ">x</span> that uses only labeled nodes as 
+			intermediate nodes.  Initially, set <span class="equ">d<span class="nor">(</span>s<span class="nor">)
+			</span> = 0</span> and <span class="equ">d<span class="nor">(</span>x<span class="nor">)</span> = 
+			&infin;</span> for all <span class="equ">x &#8800; s</span>.  Let <span class="equ">y</span> denote the last 
+			node that was labeled. Label node <span class="equ">s</span> and let <span class="equ">y = s</span>.</p>
+		   
+	<p><b>Step 2</b>: for each unlabeled node <span class="equ">x</span>, redefine <span class="equ">d<span 
+			class="nor">(</span>x<span class="nor">)</span></span> as follows:</p>
+		   
+		   <p style="width:675px; text-align:center;"><span class="equ">d<span class="nor">(</span>x<span 
+		   class="nor">)</span> = min<span class="nor">{</span>d<span class="nor">(</span>x<span 
+			   class="nor">)</span>, d<span class="nor">(</span>y<span class="nor">)</span> + 
+			   e<span class="nor">(</span>y, x<span class="nor">)}</span></span></p>
+		   
+		   <p style="width:635px; margin-left:40px;">This can be performed efficiently by scanning the 
+			forward star of node <span class="equ">y</span> since only these nodes will be affected.  
+			If <span class="equ">d<span class="nor">(</span>x<span class="nor">)</span> = &infin;</span> 
+			for all unlabeled nodes <span class="equ">x</span>, then stop because no path exists
+			from <span class="equ">s</span> to any unlabeled node.  Otherwise, label the unlabeled node 
+			with the smallest value of <span class="equ">d<span class="nor">(</span>x<span class="nor">)</span></span>. 
+			Also label the edge directed into node <span class="equ">x</span> from a labeled node that determined 
+			the value of <span class="equ">d<span class="nor">(</span>x<span class="nor">)</span></span> 
+			in the above minimization.  Let <span class="equ">y = x</span></p>
+
+	<p style="position: relative; width:635px; left:40px; text-indent:-40px;"><b>Step 3</b>: if node 
+			<span class="equ">t</span> has been labeled then stop, since a shortest path from <span 
+			class="equ">s</span> to <span class="equ">t</span> has been discovered. This path consists of 
+			the unique path of labeled edges from <span class="equ">s</span> to <span class="equ">t</span>.  
+			If node <span class="equ">t</span> has not been labeled yet, repeat step 2.</p>
+
+	<p>If you feel the math expression hard to apprehend, the following procedure may help. And the 
+		procedure can be carried out with a piece of paper and a pencile. A graph 
+		(network) is composed of a set of nodes that are connected by edges each carrying a traversal 
+		cost (or length). To find the shortest path from an origin node to a destination node,</p>
+
+	<p style="position: relative; width:635px; left:40px; text-indent:-40px;"><b>Step 1</b>: Assign a travel 
+		cost 0 to the origin node and infinity (∞) to all the rest nodes. Then set the origin node as the 
+		start node and begin the following iterative process.</p>
+
+	<p style="position: relative; width:635px; left:40px; text-indent:-40px;"><b>Step 2</b>, If the start 
+		node is the destination node, the shortest path is found, stop.</p>
+		<p style="position:relative; left:40px;">Otherwise,</p>
+	<p style="position:relative; width:615px; left:60px; text-indent:-20px;">1) For the start node, find all 
+		its neighboring nodes that can be directly traveled to. Let's call them to-nodes.</p>
+	<p style="position:relative; width:615px; left:60px; text-indent:-20px;">2) For each to-node, calculate 
+		a cumulative cost by adding the cost at the start node and the cost of the edge between the start-node and the to-node.</p>
+		<p style="position:relative; width:615px; left:60px;">If the to-node currently carries infinity, 
+			label the node with the cumulative cost;</p>
+		<p style="position:relative; width:615px; left:60px;">Otherwise (if the to-node carries 
+			a cost, i.e., the node has been labelled), </p>
+			<p style="position:relative; width:595px; left:80px;">if the new cumulative cost is
+			smaller than the labeled cost at the to-node, relabel the to-node with the new cumulative cost;</p>
+			<p style="position:relative; width:595px; left:80px;">otherwise (if the cumulative cost is 
+			greater than or equal to the labeled cost at the to-node), just skip this to-node.</p>
+		<!--p style="position:relative; width:595px; left:80px; text-indent:-20px;">b. If the to-node carries a</p-->
+	<p style="position:relative; width:615px; left:60px; text-indent:-20px;">3)	Once all to-nodes from the 
+		start node are labeled, close the start node and label the edge leading to the start node. This marks
+		the end of an iteration of network search.</p>
+	</p>
+	<p style="position: relative; width:635px; left:40px; text-indent:-40px;"><b>Step 3</b>: Among all labelled 
+		nodes (i.e., nodes carrying a cost but are not closed), find the one that carries the minimum 
+		cost and set it as the start node, then repeat step 2. If no start node is found, i.e., all nodes are
+		either closed or unlabeled, the entire network is searched through, stop.</p>
+
+
+<h2 style="text-align:center;">How to Use The Dijkstra Algorithm Learning App</h2>
+	
+	<!--p>The algorithm may be performed using a pen and a piece of paper (although Dijkstra did not have
+		them when he figured it out outside a coffee shop). Once you have drawn a graph, assign 0 (cost)
+		to the origin node you choose and assign infinity to all the rest nodes. Optionally, you may also 
+		specify a destination node.  To start a shortest path search, let the origin node to be the start 
+		node and find out all nodes that can be traveled to from the start node. Then for each (to-)nodes 
+		just found, label it with the cumulative costs, i.e. the sum of the cost at the start node and 
+		the cost of the edge between them.  After labelling all to-nodes of a start node, highlight the 
+		edge that leads to the start node (if it's not the origin) and close the start node, which marks 
+		the end of a round of search. To start a new round, select the node that carries the minimum 
+		cumulative cost among all labeled to-nodees	as a new start node and repeat the above search process. 
+		While searching to-nodes from the start node, a labeled node can be relabelled if it is arrived 
+		with a lower cumulative cost, but the start node and all closed nodes cannot be revisited. Once 
+		the destination node (if specified) is selected as a start node, or when no new start node is 
+		available, the search process stops and the shortest path(s) can be retrived by following the 
+		highlighted edges.</p-->
+
+	<p>This Dijkstra's algorithm learning app helps you understand the algorithm in a way similar to using 
+		pen and paper, but more conveniently. When you open the page, an example graph is loaded. You can 
+		use the select tool to relocate nodes by dragging them, and you can adjust the cost of edges by 
+		dragging the slider on them.  To search the shortest path(s), you must use the set origin tool 
+		to set an origin node before start, and you may or may not set a destination. Then you can click 
+		the step over tool to move the algorithm step by step, or click the auto run tool once to run through. 
+		Network search process is explained step-by-step in the lower box. The following briefly explains 
+		the tools on the page.</p>
+	
+	<center><table cellspacing="0">
+	<tr><td><img src="images/btnload0.png" class="tool"></td>
+		<td><img src="images/btnsel1.png" class="tool" style="border:1px red solid; border-radius:2px;"></td>
+		<td><img src="images/btnnod0.png" class="tool"></td>
+		<td><img src="images/btnedg0.png" class="tool"></td>
+		<td><img src="images/btnori0.png" class="tool"></td>
+		<td><img src="images/btndes0.png" class="tool"></td>
+		<td><img src="images/btncut0.png" class="tool"></td>
+		<td><img src="images/btnstep0.png" class="tool"></td>
+		<td><img src="images/btnrun0.png" class="tool"></td>
+		<td><img src="images/btnref0.png" class="tool"></td>
+		<td><img src="images/btnclr0.png" class="tool"></td>
+		<td><img src="images/btnhelp0.png" class="tool"></td></tr>
+	<!--<tr><td><div class="cir">1</div></td>
+		<td><div class="cir">2</div></td>
+		<td><div class="cir">3</div></td>
+		<td><div class="cir">4</div></td>
+		<td><div class="cir">5</div></td>
+		<td><div class="cir">6</div></td>
+		<td><div class="cir">7</div></td>
+		<td><div class="cir">8</div></td>
+		<td><div class="cir">9</div></td>
+		<td><div class="cir">10</div></td>
+		<td><div class="cir">11</div></td>
+		<td><div class="cir">12</div></td></tr>-->
+	</table></center><br>
+	
+	<table style="position:relative; margin-left:40px;">
+		<tr><td><img src="images/btnload0.png" class="tool"></td><td><span class="blue">Load graph:</span></td><td>Click to load a sample graph</td></tr>
+		<tr><td><img src="images/btnsel1.png" class="tool"></td><td><span class="blue">Select:</span></td><td>Use it to move nodes and adjust (slide) edge costs</td></tr>
+		<tr><td><img src="images/btnnod0.png" class="tool"></td><td><span class="blue">Add node:</span></td><td>Use it to add new nodes by clicking on the map</td></tr>
+		<tr><td><img src="images/btnedg0.png" class="tool"></td><td><span class="blue">Add edge:</span></td><td>Use it to add edges by dragging from one node to another</td></tr>
+		<tr><td><img src="images/btnori0.png" class="tool"></td><td><span class="blue">Set origin:</span></td><td>Use it to set an origin by clicking on a node</td></tr>
+		<tr><td><img src="images/btndes0.png" class="tool"></td><td><span class="blue">Set destination:</span></td><td>Use it to set a destination by clicking on a node</td></tr>
+		<tr><td><img src="images/btncut0.png" class="tool"></td><td><span class="blue">Delete:</span></td><td>Use it to delete nodes/edges by clicking on the nodes or sliders</td></tr>
+		<tr><td><img src="images/btnstep0.png" class="tool"></td><td><span class="blue">Step over:</span></td><td>Click it to move one step forward in path search</td></tr>
+		<tr><td><img src="images/btnrun0.png" class="tool"></td><td><span class="blue">Auto run:</span></td><td>Click it to run through a path search</td></tr>
+		<tr><td><img src="images/btnref0.png" class="tool"></td><td><span class="blue">Refresh:</span></td><td>Click to refresh a graph for a new search</td></tr>
+		<tr><td><img src="images/btnclr0.png" class="tool"></td><td><span class="blue">Clear:</span></td><td>Click to clear the graph</td></tr>
+		<tr><td><img src="images/btnhelp0.png" class="tool"></td><td><span class="blue">Help:</span></td><td>Click to open this page</td></tr>
+	</table>
+
+
+</div>
+<p>&nbsp;</p>
+</center>
+</body>
+</html>

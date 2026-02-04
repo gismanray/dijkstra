@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
+<title>Dijkstra's Algorithm</title>
+<style type="text/css">
+	/* .canv { position:absolute; top:85px; left:0px; border: 1px gray solid; border-radius:5px; } */
+	.box  { position:absolute; top:85px; left:0px; width:800px; height:480px; border:1px gray solid; border-radius:5px; overflow: hidden; 
+			/* the following settings disable text selection in the box when mouse dragging */
+			-youbkit-touch-callout: none; /* iOS Safari */
+			-youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge & Opera 15+ */
+			-moz-user-select: none;    	  /* Firefox */
+			-ms-user-select: none;        /* IE 10+ and Edge */
+			user-select: none;            /* Non-prefixed version, currently supported by Chrome and Opera */
+	}
+	.info { position:absolute; top:575px; left:0px; width:790px; height: 180px; border:1px gray solid; border-radius:5px; padding:5px; font-family:times new roman; font-size:10pt; text-align:left; overflow:auto; }
+	.cred { position:absolute; right:5px; bottom:3px; font-family:arial; font-size:9pt; color:#999999; }
+	.node { position:absolute; border:1px #000 solid; border-radius:50%; text-align:center; background-color:#ffffdd; cursor:pointer;}
+	.slid { position:absolute; width:10px; height:10px; border-radius:5px; cursor:pointer; background: radial-gradient(circle at 65% 25%, white 1px, #99ff99 3%, #33cc33 60%, #99ff99 100%);}
+	.slbl { position:absolute; left:-10px; top:-20px; font-family:arial; font-size:8pt; color:blue; }
+	.tool { border:1px #fff solid; "border-radius": "2px"; width:20px; height:20px; }
+	.butn { border:1px #fff solid; "border-radius": "2px"; width:20px; height:20px; }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script type="text/javascript" src="scripts/mygraphics.js"></script>
+<script type="text/javascript" src="scripts/dijkstra.js"></script>
+</head>
+<body>
+<center>
+<div id="fram" style="position:relative; width:802px; height:760px; border:0px red solid;">
+<h2 style="position:relative; text-align:center; font-family:arial;">Dijkstra's Shortest Path Algorithm</h2>
+<div style="position:absolute; left:0px; top:60px;">
+	<img src="images/btnload0.png" id="load" class="butn" title="Example graph">
+	<img src="images/btnsel1.png" id="sel" class="tool" title="Select" style="border:1px #f88 solid; border-radius:2px;">
+	<img src="images/btnnod0.png" id="nod" class="tool" title="Add node">
+	<img src="images/btnedg0.png" id="edg" class="tool" title="Draw edge">
+	<img src="images/btnori0.png" id="ori" class="tool" title="Set origin">
+	<img src="images/btndes0.png" id="des" class="tool" title="Set destination">
+	<img src="images/btncut0.png" id="del" class="tool" title="Delete elements">
+	<img src="images/btnstep0.png" id="step" class="butn" title="Step over">
+	<img src="images/btnrun0.png" id="run" class="butn" title="Auto run">
+	<img src="images/btnref0.png" id="ref" class="butn" title="Refresh graph">
+	<img src="images/btnclr0.png" id="clr" class="butn" title="Clear">
+	<img src="images/btnhelp0.png" id="help" class="butn" title="Help">
+</div>
+
+<div id="box" class="box"><span class="cred">Developed by Ruihong Huang</span></div>
+<div id="info" class="info"></div>
+</div>
+</center>
+</body>
+</html>
